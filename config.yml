@@ -1,0 +1,14 @@
+host: 127.0.0.1
+port: 50095
+auth-key: development-auth-key-random
+signin-key: development-signin-key-random
+db:
+  host: mongo
+  user: root
+  pass: toor
+  port: 27017
+tls:
+  enabled: true
+  certfile: "/certs/ex_srv.crt"
+  certkey: "/certs/ex_srv.key"
+  cafile: "/certs/root_ca.crt"
