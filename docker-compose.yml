@@ -1,0 +1,34 @@
+version: '3'
+services:
+  haaukins-exercises:
+    container_name: haaukins-exercises-server
+    env_file:
+      - .env
+    image: aaunetworksecurity/haaukins-exercises:v1.2.2
+    ports:
+      - 50095:50095
+    restart: always
+    depends_on:
+      - mongo
+    volumes:
+      - ${CERTS_PATH}:/certs:ro
+      - ${CONFIG_PATH}:/config.yml:ro  # mount config file
+    networks:
+      - internal
+
+  mongo:
+    container_name: haaukins-exercises-db
+    image: mongo
+    env_file:
+      - .env
+    restart: always
+    ports:
+     - "27017:27017"
+    volumes:
+      - ${MONGO_DATA_PATH}:/data/db
+    networks:
+      - internal
+      
+networks:
+  internal:
+    driver: bridge
